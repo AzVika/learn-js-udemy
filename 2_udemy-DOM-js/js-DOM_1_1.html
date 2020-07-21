@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <p>Text</p>
+    <p>Other</p>
+    <p>Next</p>
+    <p>Last</p>
+  </div>
+
+  <div></div>
+  <div></div>
+
+  <script>
+    /* 1. Зная структуру html, с помощью изученных методов получить (в консоль):
+    1. head
+    2. body
+    3. все дочерние элементы body и вывести их в консоль.
+    4. первый div и все его дочерние узлы
+    а) вывести все дочерние узлы в консоль
+    б) вывести в консоль все дочерние узлы, кроме первого и последнего
+    Для навигации по DOM использовать методы, которые возвращают только элементы  */
+    
+    const head = document.head;
+    console.log(head);
+
+    const body = document.body;
+    console.log(body);
+
+    const bodyChildren = document.body.children;
+    console.log(bodyChildren);
+
+    const div = document.body.firstElementChild;
+    console.log(div);
+
+    divChildren = document.body.firstElementChild.children;
+    console.log(divChildren);
+    
+    const listDiv = document.body.firstElementChild.children;
+    const filteredArticles = [...div.children]
+      .filter(p => p !== div.firstElementChild && p !== div.lastElementChild);
+    console.log(filteredArticles);
+
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div>
+    <article>
+      <p>Lorem ipsum dolor sit amet, odio omnesque ius cu, quo ex atqui antiopam. At detracto menandri eos. Duo in causae viderer, graeci <a href="#">reprehendunt</a> has in. Decore <mark>nemore</mark> philosophia te pro, nobis legere causae ex mei, odio putant mentitum ea ius. Vix nostro deserunt explicari eu.</p>
+    </article>
+  </div>
+
+  <ul>
+    <li><a href="#">Link1</a></li>
+    <li><a href="#">Link2</a></li>
+    <li><a href="#">Link3</a></li>
+    <li><a href="#">Link4</a></li>
+  </ul>
+  <span></span>
+
+  <a href="#">Some link</a>
+
+  <script>
+    /*2. Создать функцию, которая принимает два элемента. Функция проверяет, является ли первый элемент родителем для второго:
+
+    isParent(parent, child);
+    isParent(document.body.children[0], document.querySelector('mark'));
+    // true так как первый див является родительским элементом для mark
+
+    isParent(document.querySelector('ul'), document.querySelector('mark'));
+    // false так ul НЕ является родительским элементом для mark
+    Функция принимает только DOM объекты. Обязательно проверяйте это.  */
+    
+    const isParent = (parent, child) => {
+      if (!(parent instanceof HTMLElement) || !(child instanceof HTMLElement)) return;
+
+      let isParent = false;
+      let currentParent = child.parentElement;
+      
+      while(currentParent) {
+        isParent = parent === currentParent; 
+        if (isParent) {
+          currentParent = null;
+        } else {
+			currentParent = currentParent.parentElement;
+		}
+      }
+
+      return isParent;
+    };
+
+    const res1 = isParent(document.body.children[0], document.querySelector('mark'));
+    console.log(res1);
+    const res2 = isParent(document.querySelector('ul'), document.querySelector('mark'));
+    console.log(res2);
+
+    /* 3. Используя разметку из предыдущего задания.
+    Получить список всех ссылок, которые не находятся внутри списка ul. */
+
+    const filteredLinks = [...document.links].filter(a => !a.closest('ul'));
+    console.log(filteredLinks);
+
+    /*  4. Используя разметку из предыдущего задания.
+    Найти элемент, который находится перед и после списка ul.
+     */
+     const prevUl = document.querySelector('ul').previousElementSibling;
+     const nextUl = document.querySelector('ul').nextElementSibling;
+
+     console.log(prevUl);
+     console.log(nextUl);
+
+  </script>
+</body>
+</html>

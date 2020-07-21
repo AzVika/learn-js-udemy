@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <style>
+      .bg-red {
+        background-color: red;
+      }
+  </style>
+</head>
+<body>
+  <button id="btn-msg" data-text="Custom message">Show message</button>
+  <button id="btn-generate">Generate item</button>
+  <p><strong id="tag">Tag:</strong></p>
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+    </ul>
+
+  <script>
+    /* Вопросы к этому заданию:
+    1. По нажатию на кнопку "btn-msg" должен появиться алерт с тем текстом который находится в атрибуте data-text у кнопки.  */
+
+    const btnMsg = document.getElementById('btn-msg');
+    btnMsg.addEventListener('click', e => {
+      alert(btnMsg.dataset.text);
+    });
+
+
+    /* 2. При наведении указателя мыши на "btn-msg", кнопка становится красной; когда указатель мыши покидает кнопку, она становится прежнего цвета. Цвет менять можно через добавление класса.  */
+    btnMsg.addEventListener('mouseover', e => {
+      btnMsg.classList.add('bg-red');
+    });
+
+    btnMsg.addEventListener('mouseout', e => {
+      btnMsg.classList.remove('bg-red');
+    });
+
+
+    /* 3. При нажатии на любой узел документа показать в элементе с id=tag имя тега нажатого элемента.  */
+    const tag = document.getElementById('tag');
+    document.body.addEventListener('click', e => {
+      tag.textContent = 'Tag:' + e.target.nodeName;
+    });
+
+
+    /* 4. При нажатии на кнопку btn-generate добавлять в список ul элемент списка Li с текстом Item + порядковый номер Li по списку, т.е Item 3, Item 4 и т.д  */
+    const btnGenerate = document.getElementById('btn-generate');
+    function generateNewItem(e) {
+      const ul = document.querySelector('ul');
+      const lengthLi = ul.children.length;
+      const newLi = document.createElement('li');
+      newLi.textContent = 'Item ' + (lengthLi + 1);
+      ul.insertAdjacentElement('beforeend', newLi);
+    }
+    
+    btnGenerate.addEventListener('click',generateNewItem);
+
+
+  </script>
+</body>
+</html>
